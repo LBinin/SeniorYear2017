@@ -11,14 +11,6 @@
     z-index: 9;
     /*visibility: hidden;*/
 }
-.saveTip {
-    position: relative;
-    top: 5%;
-    height: 10%;
-    width: 90%;
-    background: url(../images/saveTip.png) no-repeat left center;
-    background-size: contain;
-}
 .camera {
     /*visibility: hidden;*/
 }
