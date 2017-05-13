@@ -1,0 +1,14 @@
+.paper-generate {
+    position: absolute;
+    bottom: 15%;
+    height: 70%;
+    width: 100%;
+    /*background-image: url(../images/input_paper_empty.png);*/
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    z-index: 9;
+}
+#canvas, .canvas_bg {
+    visibility: hidden;
+}
