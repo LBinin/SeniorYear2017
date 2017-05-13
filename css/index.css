@@ -42,9 +42,25 @@ input:focus {
     background-size: contain;
     z-index: 9;
 }
-.input-class {
+.input-grade {
     position: absolute;
     bottom: 51%;
+    left: 0;
+    right: 0;
+    height: 9%;
+    width: 60%;
+    background: url(../images/input_name.png);
+    background-size: 100% 100%;
+    padding: 0 10px;
+    color: #333;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.input-class {
+    position: absolute;
+    bottom: 39%;
     left: 0;
     right: 0;
     height: 9%;
@@ -62,7 +78,7 @@ input:focus {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 36%;
+    bottom: 27%;
     height: 9%;
     width: 60%;
     background: url(../images/input_name.png);
@@ -78,7 +94,7 @@ input:focus {
     height: 9%;
     width: 60%;
     position: absolute;
-    bottom: 20%;
+    bottom: 15%;
     left: 0;
     right: 0;
     background: url(../images/generate_btn.png);
@@ -106,4 +122,33 @@ input:focus {
     transform: translateX(5%) rotate(-30deg);
     -moz-transform: translateX(5%) rotate(-30deg);
     -webkit-transform: translateX(5%) rotate(-30deg);
+}
+
+/* 横屏 */
+.orientation_landscape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #536173;
+    z-index: 999999;
+    visibility: hidden;
+}
+.orientation_landscape .tip-img {
+    height: 70%;
+    width: 100%;
+    position: absolute;
+    top: 10%;
+    background: url(../images/orientation_landscape.png) no-repeat center center;
+    background-size: contain;
+}
+.orientation_landscape .tip-words {
+    color: #fff;
+    position: absolute;
+    top: 85%;
+    font-size: 1.2rem;
+    left: 0;
+    right: 0;
+    text-align: center;
 }

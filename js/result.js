@@ -33,15 +33,18 @@ $(function(){
 
     // 获取参数
     var request = decodeURI(window.location.search.substr(1, window.location.search.length)).split('&');
-    var className = '';
-    var personName = '';
-    console.dir(request);
+    var grade = ''
+    var className = ''
+    var personName = ''
+    console.log(request);
     for (var i = 0; i < request.length; i++) {
         var temp = request[i].split('=');
         if (temp[0] == 'className') {
             className = temp[1]
         }else if (temp[0] == 'personName') {
             personName = temp[1]
+        }else if (temp[0] == 'grade') {
+            grade = temp[1]
         }
     }
 
@@ -61,7 +64,7 @@ $(function(){
         // 写字
         ctx.font = '50px MicrosoftYahei'
         ctx.textAlign = 'center'
-        ctx.fillText('2015级', center.x, 150, imgWidth - 140)
+        ctx.fillText(grade, center.x, 150, imgWidth - 140)
         // ctx.textAlign='center';
         ctx.fillText(className, center.x, 220, imgWidth - 140)
 
