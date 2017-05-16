@@ -1,3 +1,6 @@
+html,body {
+    height: 100%;
+}
 .paper-generate {
     position: absolute;
     bottom: 15%;

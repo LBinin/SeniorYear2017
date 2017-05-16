@@ -5,8 +5,10 @@ $(function(){
     var imgWidth
     var canvas
     var ctx
-    var canvas_background = './images/input_paper_empty.png?'
+    var canvas_background = './images/input_paper_empty.png'
     var canvas_background_img = new Image()
+    var QRcodeSrc = './images/QRcode.png'
+    var QRcodeImg = new Image()
     // canvas_background_img.crossOrigin = 'anonymous' // 允许跨域
     canvas_background_img.src = canvas_background
     var img_url
@@ -121,8 +123,8 @@ $(function(){
         '双11',
         '618购物节',
         '国际禁毒日',
-        '国际消费者权益日',
-        '国际臭氧层保护日',
+        '消费者权益日',
+        '臭氧层保护日',
         '全国法制宣传日',
     ]
 
@@ -165,8 +167,8 @@ $(function(){
         ['30~超过', '50~' + getRandom(1,60) + '%', '20~的同学仅凭', '30~考试月抱佛脚', '20~从未挂科'],
         ['30~一共有', '50~' + getRandom(4,18), '30~个人丢过校园卡'],
         ['30~有', '50~' + getRandom(4,18) + '%', '30~的女生进过', '50~' + site[getRandom(0, site.length - 1)], '30~男厕所'],
-        ['30~一共有', '50~' + getRandom(1,3), '30~个最强王者'],
-        ['30~四年来', '30~男生一共偷窥对面女寝','50~' + getRandom(6,18), '30~次'],
+        ['30~一共有', '50~' + getRandom(5,15), '30~个最强王者'],
+        ['30~四年来', '30~男生一共偷窥对面女寝','50~' + getRandom(6, 666), '30~次'],
 
         ['30~四年累计放飞孔明灯','46~' + kongmingNum, '30~盏，'],
         ['30~围起来可绕一田', '50~' + (kongmingNum / 200).toFixed(2),'30~圈'],
@@ -183,7 +185,7 @@ $(function(){
     // 自定义人名
     var str2 = [
         ['35~' + personName, '25~在吃毕业饭那天', '30~告白','25~肯定能成功'],
-        ['35~' + personName, '25~将在','30~' + festival[getRandom(0, festival.length)] ,'25~告白成功'],
+        ['35~' + personName, '20~去年','30~' + festival[getRandom(0, festival.length)] ,'23~告白室友遭拒'],
         ['35~' + personName, '30~脱完袜子会闻很久'],
         ['35~' + personName, '25~总是喜欢上课坐第一排', '30~玩手机'],
         ['35~' + personName, '25~总喜欢把内裤和袜子一起洗'],
@@ -219,8 +221,10 @@ $(function(){
         ['30~去KTV总喜欢点', '35~最炫民族风'],
         ['25~寝室有几个那种', '35~唱的烂又喜欢唱','25~的室友'],
         ['26~有人重修没过准备读大五'],
-        ['30~和尚庙/尼姑庵'],
-        ['35~女神班/男神班'],
+        ['30~尼姑庵'],
+        ['30~和尚庙'],
+        ['35~女神班'],
+        ['35~女神班'],
         ['30~目标是星辰大海'],
         ['26~拍毕业照的时候悄悄站在', '35~暗恋的女生背后'],
         ['26~毕业照是', '30~我和TA','26~唯一的一张', '40~合照','26~……'],
@@ -246,6 +250,8 @@ $(function(){
         str.push(str3[randomTemp]);
         str3.splice(randomTemp,1)
     }
+    if (personName == '') str.push(['20~ ']) 
+    
 
     str.push(['30~你的班级有毒'])
 
@@ -258,8 +264,13 @@ $(function(){
 
     var activityName = '最美毕业照'
 
+    var wantStr = ''
+    // var wantStr = '我也要玩'
+
     // 获取背景图片高度宽度,设置canvas的高度宽度
+    
     canvas_background_img.onload = function() {
+        console.log(2);
         imgWidth = canvas_background_img.width
         imgHeight = canvas_background_img.height
         canvas.height = imgHeight
@@ -319,16 +330,18 @@ $(function(){
         for (var j = 0; j < bottomStr.length; j++) {
             ctx.textAlign = 'center'
             ctx.font = bottomFontSize + 'px MicrosoftYahei'
+            ctx.fillStyle = "#444"
             ctx.fillText(bottomStr[j], center.x, bottomY)
             bottomY += bottomFontSize + bottomLineHeight
         }
 
         // 绘制活动名字
-        var activityNameY = 875 // 底部文字起始Y值
-        var activityNameX = 480 // 底部文字起始X值
+        var activityNameY = 870 // 底部文字起始Y值
+        var activityNameX = 120 // 底部文字起始X值
         var activityNameSplit = activityName.split('')
         var activityNameSpacing = 10
         var activityNameFontSize = 30
+        ctx.fillStyle = "#333"
         for (var j = 0; j < activityNameSplit.length; j++) {
             ctx.textAlign = 'right'
             ctx.font = activityNameFontSize + 'px MicrosoftYahei'
@@ -336,11 +349,28 @@ $(function(){
             activityNameX += ctx.measureText(activityNameSplit[j]).width + activityNameSpacing
         }
 
-        // 生成图片
-        img_url = canvas.toDataURL('image/png')
+        var wantStrSplit = wantStr.split('')
+        var wantStrFontSize = 15
+        var wantStrY = 845 // 我也要玩起始Y值
+        var wantStrX = 570 // 我也要玩起始X值
+        var wantStrLineSpacing = 2;
+        for (var i = 0; i < wantStrSplit.length; i++) {
+            ctx.textAlign = 'right'
+            ctx.font = wantStrFontSize + 'px MicrosoftYahei'
+            ctx.fillText(wantStrSplit[i], wantStrX, wantStrY)
+            wantStrY += wantStrFontSize + wantStrLineSpacing
+        }
 
-        // 设置图片
-        $('.paper-generate img').attr('src', img_url)
+        // 绘制二维码
+        QRcodeImg.src = QRcodeSrc
+        QRcodeImg.onload = function() {
+            ctx.drawImage(QRcodeImg, imgWidth - 120,imgHeight - 85, 70, 70)
+            // 生成图片
+            img_url = canvas.toDataURL('image/png')
+            // 设置图片
+            $('.paper-generate img').attr('src', img_url)
+        }
+
     }
 
     // 获取随机数

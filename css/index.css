@@ -4,7 +4,6 @@
     font-family: 'Microsoft Yahei';
 }
 html, body {
-    height: 100%;
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -47,7 +46,7 @@ input:focus {
     bottom: 51%;
     left: 0;
     right: 0;
-    height: 9%;
+    height: 35px;
     width: 60%;
     background: url(../images/input_name.png);
     background-size: 100% 100%;
@@ -63,7 +62,7 @@ input:focus {
     bottom: 39%;
     left: 0;
     right: 0;
-    height: 9%;
+    height: 35px;
     width: 60%;
     background: url(../images/input_class.png);
     background-size: 100% 100%;
@@ -79,7 +78,7 @@ input:focus {
     left: 0;
     right: 0;
     bottom: 27%;
-    height: 9%;
+    height: 35px;
     width: 60%;
     background: url(../images/input_name.png);
     background-size: 100% 100%;
@@ -152,3 +151,9 @@ input:focus {
     right: 0;
     text-align: center;
 }
+/*@media screen and (orientation: portrait) { 
+    .orientation_landscape { visibility: hidden; }
+}
+@media screen and (orientation: landscape) {   
+    .orientation_landscape { visibility: visible; }
+}*/
