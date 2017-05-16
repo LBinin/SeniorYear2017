@@ -48,12 +48,11 @@
                 conditional : function(value) {
                     if (value == '') {
                         alert('请填写班级名称~')
-                    }else if (value.length <= 3) {
-                        alert('请填写正确的班级名称~最好用全称哦')
+                    }else if (value.length <= 2) {
+                        alert('请填写正确的班级名称~最好用全称+班级哦')
                     }else {
                         return value;
                     }
-                    
                 }
             }
         });
