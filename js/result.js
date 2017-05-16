@@ -16,7 +16,7 @@ $(function(){
     var img_url
 
     var wordSpacing = 8 // 字间距
-    var currLinePaddingBottom = 30 // 行间距
+    var currLinePaddingBottom = 25 // 行间距
 
     // 获取参数
     var request = decodeURI(window.location.search.substr(1, window.location.search.length)).split('&');

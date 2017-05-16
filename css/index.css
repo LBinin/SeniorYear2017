@@ -69,6 +69,7 @@ input:focus {
     right: 0;
     height: 35px;
     width: 60%;
+    max-width: 700px;
     background: url(../images/input_class.png);
     background-size: 100% 100%;
     padding: 0 10px;
@@ -85,6 +86,7 @@ input:focus {
     bottom: 27%;
     height: 35px;
     width: 60%;
+    max-width: 700px;
     background: url(../images/input_name.png);
     background-size: 100% 100%;
     padding: 0 10px;
@@ -97,6 +99,7 @@ input:focus {
 .generate {
     height: 9%;
     width: 60%;
+    max-width: 700px;
     position: absolute;
     bottom: 15%;
     left: 0;
