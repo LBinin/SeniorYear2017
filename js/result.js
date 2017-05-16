@@ -170,12 +170,13 @@ $(function(){
         ['30~一共有', '50~' + getRandom(5,15), '30~个最强王者'],
         ['30~四年来', '30~男生一共偷窥对面女寝','50~' + getRandom(6, 666), '30~次'],
 
-        ['30~四年累计放飞孔明灯','46~' + kongmingNum, '30~盏，'],
-        ['30~围起来可绕一田', '50~' + (kongmingNum / 200).toFixed(2),'30~圈'],
+        ['30~四年累计放飞孔明灯', '55~' + kongmingNum, '30~盏，', '<br/>'],
+        ['<br/>', '30~围起来可绕一田', '55~' + (kongmingNum / 200).toFixed(2),'30~圈'],
+
+        ['30~组织委员一共组织了', '45~' + getRandom(1,6),'30~次班级活动', '<br/>'],
+        ['<br/>', '30~最成功的一次竟是', '45~' + activitySite[getRandom(0,activitySite.length - 1)]],
 
         ['30~班上同学对', '32~老师','30~的满意率为', '50~' + getRandom(1,98) + '%'],
-        ['30~组织委员一共组织了', '45~' + getRandom(1,6),'30~次班级活动'],
-        ['30~最成功的一次竟是', '45~' + activitySite[getRandom(0,activitySite.length - 1)]],
         ['40~' + classCommittee[classCommitteeNum], '30~偷偷牵过', '40~' + classCommittee[classCommitteeNum2], '30~的小手'],
         ['40~' + classCommittee[classCommitteeNum3], '30~做梦都想亲', '40~' + classCommittee[classCommitteeNum4], '30~一口'],
         ['45~' + classCommittee[getRandom(0,classCommittee.length - 1)], '30~竟然私藏了一个', '33~充气娃娃'],
@@ -237,8 +238,21 @@ $(function(){
     var str3Num = 3;
     for (var i = 0; i < str1Num; i++) {
         var randomTemp = getRandom(0,str1.length - 1)
+        // randomTemp = 12
+        if (str1[randomTemp][0] == '<br/>') {
+            str1[randomTemp - 1].pop()
+            str1[randomTemp].splice(0,1)
+            str.push(str1[randomTemp - 1], str1[randomTemp])
+            continue
+        }
+        if (str1[randomTemp][ str1[randomTemp].length - 1 ] == '<br/>') {
+            str1[randomTemp + 1].splice(0,1)
+            str1[randomTemp].pop()
+            str.push(str1[randomTemp], str1[randomTemp + 1])
+            continue
+        }
         str.push(str1[randomTemp]);
-        str1.splice(randomTemp,1)
+        // str1.splice(randomTemp,1)
     }
     for (var i = 0; i < str2Num; i++) {
         var randomTemp = getRandom(0,str2.length - 1)
@@ -250,7 +264,7 @@ $(function(){
         str.push(str3[randomTemp]);
         str3.splice(randomTemp,1)
     }
-    if (personName == '') str.push(['20~ ']) 
+    // if (personName == '') str.push(['20~ ']) 
     
 
     str.push(['30~你的班级有毒'])
@@ -292,7 +306,7 @@ $(function(){
 
 
         // 绘制有毒内容
-        var currLineY = 300 // 初始文字位置
+        var currLineY = 280 // 初始文字位置
         var textOffsetRight = 10 // 文字右偏移
         for (var j = 0; j < str.length; j++) {
             // 测量宽度
