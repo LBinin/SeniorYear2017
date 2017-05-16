@@ -56,6 +56,11 @@ input:focus {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    border: 0;
+    -webkit-appearance: none;
+}
+.input-grade:focus {
+    outline: none;
 }
 .input-class {
     position: absolute;

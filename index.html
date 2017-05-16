@@ -16,8 +16,13 @@
     <div class="container">
         <div class="paper">
             <form action="./result.html">
-                <input class="input-grade" name="grade" placeholder="你的年级" type="text" required>
-                <input class="input-class" name="className" placeholder="你的班级名称" type="text" required>
+                <select class="input-grade" name="grade" placeholder="你的年级" type="text">
+                    <option value="2013级">2013级</option>
+                    <option value="2014级">2014级</option>
+                    <option value="2015级">2015级</option>
+                    <option value="2016级">2016级</option>
+                </select>
+                <input class="input-class" name="className" placeholder="你的班级名称" type="text" data-validate="class">
                 <input class="input-name" name="personName" placeholder="听说输入名字更有趣哦(可选)" type="text">
                 <input type="submit" class="generate" value="">
             </form>
@@ -32,6 +37,25 @@
     </div>
     
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="./js/jquery-validate.min.js"></script>
     <script src="./js/index.js"></script>
+    <script>
+        jQuery('form').validate();
+        jQuery.validateExtend({
+            class : {
+                required : true,
+                conditional : function(value) {
+                    if (value == '') {
+                        alert('请填写班级名称~')
+                    }else if (value.length <= 3) {
+                        alert('请填写正确的班级名称~最好用全称哦')
+                    }else {
+                        return value;
+                    }
+                    
+                }
+            }
+        });
+    </script>
 </body>
 </html>
