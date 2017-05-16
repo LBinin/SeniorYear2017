@@ -5,6 +5,8 @@ $(function(){
     var imgWidth
     var canvas
     var ctx
+
+    var str = [] // 显示有毒内容
     var canvas_background = './images/input_paper_empty.png'
     var canvas_background_img = new Image()
     var QRcodeSrc = './images/QRcode.png'
@@ -231,43 +233,55 @@ $(function(){
         ['26~毕业照是', '30~我和TA','26~唯一的一张', '40~合照','26~……'],
     ]
 
-    var str = []
-
+    
+    // 限制每一部分的抽出数量
     var str1Num = 2;
     var str2Num = personName == '' ? 0 : 1;
     var str3Num = 3;
-    for (var i = 0; i < str1Num; i++) {
-        var randomTemp = getRandom(0,str1.length - 1)
-        // randomTemp = 12
-        if (str1[randomTemp][0] == '<br/>') {
-            str1[randomTemp - 1].pop()
-            str1[randomTemp].splice(0,1)
-            str.push(str1[randomTemp - 1], str1[randomTemp])
-            continue
-        }
-        if (str1[randomTemp][ str1[randomTemp].length - 1 ] == '<br/>') {
-            str1[randomTemp + 1].splice(0,1)
-            str1[randomTemp].pop()
-            str.push(str1[randomTemp], str1[randomTemp + 1])
-            continue
-        }
-        str.push(str1[randomTemp]);
-        // str1.splice(randomTemp,1)
+
+    if (grade == '' || className == '') {
+        str.push(['40~乖乖填好信息哦'])
+        $('.returnHome').css('visibility', 'visible')
+    }else {
+        pushToDisplay()
     }
-    for (var i = 0; i < str2Num; i++) {
-        var randomTemp = getRandom(0,str2.length - 1)
-        str.push(str2[randomTemp]);
-        str2.splice(randomTemp,1)
-    }
-    for (var i = 0; i < str3Num; i++) {
-        var randomTemp = getRandom(0,str3.length - 1)
-        str.push(str3[randomTemp]);
-        str3.splice(randomTemp,1)
+
+    function pushToDisplay() {
+        console.log(str1Num);
+        for (var i = 0; i < str1Num; i++) {
+            console.log(11213);
+            var randomTemp = getRandom(0,str1.length - 1)
+            // randomTemp = 12
+            if (str1[randomTemp][0] == '<br/>') {
+                str1[randomTemp - 1].pop()
+                str1[randomTemp].splice(0,1)
+                str.push(str1[randomTemp - 1], str1[randomTemp])
+                continue
+            }
+            if (str1[randomTemp][ str1[randomTemp].length - 1 ] == '<br/>') {
+                str1[randomTemp + 1].splice(0,1)
+                str1[randomTemp].pop()
+                str.push(str1[randomTemp], str1[randomTemp + 1])
+                continue
+            }
+            str.push(str1[randomTemp]);
+            // str1.splice(randomTemp,1)
+        }
+        for (var i = 0; i < str2Num; i++) {
+            var randomTemp = getRandom(0,str2.length - 1)
+            str.push(str2[randomTemp]);
+            str2.splice(randomTemp,1)
+        }
+        for (var i = 0; i < str3Num; i++) {
+            var randomTemp = getRandom(0,str3.length - 1)
+            str.push(str3[randomTemp]);
+            str3.splice(randomTemp,1)
+        }
+        str.push(['30~你的班级有毒'])
     }
     // if (personName == '') str.push(['20~ ']) 
     
 
-    str.push(['30~你的班级有毒'])
 
     console.dir(str);
 

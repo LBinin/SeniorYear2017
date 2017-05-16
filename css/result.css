@@ -31,3 +31,17 @@ html,body {
 #canvas, .canvas_bg {
     visibility: hidden;
 }
+.returnHome {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    font-size: 1.6rem;
+    color: #000;
+    z-index: 9999;
+    text-decoration: none;
+    visibility: hidden;
+}
