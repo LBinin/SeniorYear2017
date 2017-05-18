@@ -322,6 +322,8 @@ $(function(){
         // 绘制有毒内容
         var currLineY = 280 // 初始文字位置
         var textOffsetRight = 10 // 文字右偏移
+
+        var contentWidth = 554 // 总宽度
         for (var j = 0; j < str.length; j++) {
             // 测量宽度
             var currLineSumWidth = 0
@@ -334,9 +336,24 @@ $(function(){
                 currLineSumWidth += ctx.measureText( temp[1] ).width > 300 ? 300 + wordSpacing : ctx.measureText( temp[1] ).width + wordSpacing
                 // 获取最大高度
                 currLineMaxHeight = parseInt(temp[0]) > currLineMaxHeight ? parseInt(temp[0]) : currLineMaxHeight
+                // 解决宽度自适应问题
+                if (currLineSumWidth > contentWidth) {
+                    for( var k = 0; k < str[j].length; k++ ) {
+                        console.log(str[j]);
+                        var resize = str[j][k].split('~')
+                        str[j][k] = (parseInt( resize[0] ) - 1) + '~' + resize[1]
+                        console.log(str[j]);
+                    }
+                    currLineSumWidth = 0
+                    currLineMaxHeight = 0
+                    i = -1
+                }
             }
+            console.log('第' + (j+1) + '句' + 'currLineSumWidth=' + currLineSumWidth + ' currLineMaxHeight=' + currLineMaxHeight)
 
             var textLeft = (imgWidth - currLineSumWidth) / 2 + textOffsetRight
+            console.log('第' + (j+1) + '句' + 'textLeft = ' + textLeft);
+
 
             // 绘制文字
             ctx.textAlign='left';
