@@ -163,7 +163,7 @@ $(function(){
 
     // 班级内容
     var str1 = [
-        ['30~有', '50~' + getRandom(1,5), '30~个人被', '50~' + company[getRandom(0,company.length - 1)], '30~录取'],
+        ['30~有', '50~' + getRandom(1,5), '30~个人被', '50~' + company[getRandom(0,company.length - 1)], '30~录用'],
         ['30~有', '53~' + getRandom(1,3), '30~个人被', '50~' + college[getRandom(0,college.length - 1)], '30~录取'],
         ['30~班上四年一共产生了', '50~' + getRandom(1,4), '30~对情侣'],
         ['30~有', '50~' + getRandom(1,4), '30~个男生暗恋隔壁班妹子'],
@@ -173,7 +173,7 @@ $(function(){
         ['30~一共有', '50~' + getRandom(4,18), '30~个人丢过校园卡'],
         ['30~有', '50~' + getRandom(4,18) + '%', '30~的女生进过', '50~' + site[getRandom(0, site.length - 1)], '30~男厕所'],
         ['30~一共有', '50~' + getRandom(5,15), '30~个最强王者'],
-        ['30~四年来', '30~男生一共偷窥对面女寝','50~' + getRandom(6, 666), '30~次'],
+        ['30~上大学来', '30~男生一共偷窥对面女寝','50~' + getRandom(6, 666), '30~次'],
 
         ['30~四年累计放飞孔明灯', '55~' + kongmingNum, '30~盏，', '<br/>'],
         ['<br/>', '30~围起来可绕一田', '55~' + (kongmingNum / 200).toFixed(2),'30~圈'],
@@ -198,9 +198,9 @@ $(function(){
         ['45~' + personName, '30~总是那么美'],
         ['45~' + personName, '30~总是那么妩媚'],
         ['45~' + personName, '28~胸围有', '35~36D'],
-        ['30~' + personName, '18~毕业被黄校长评为', '26~校园卡之王', '18~从没丢过校园卡'],
+        ['30~' + personName, '18~毕业被周校长评为', '26~校园卡之王', '18~从没丢过校园卡'],
         ['35~' + personName, '25~明明可以靠才华吃饭，', '25~却选择靠脸'],
-        ['25~毕业照拍了十次，', '35~' + personName, '25~闭眼闭了九次'],
+        ['25~毕业照拍了十次，', '35~' + personName, '25~闭眼闭了九次', 2013],
         ['35~' + personName, '22~总喜欢穿着滑板鞋在', '28~逸夫楼门口','22~摩擦'],
         ['40~' + personName, '25~是吃穷了宿舍的胖纸'],
         ['40~' + personName, '25~图书馆抢座从未失手'],
@@ -211,12 +211,12 @@ $(function(){
     var str3 = [
         ['30~震惊！', '30~就业率竟然有100%'],
         ['35~班长说', '23~要请大家去万达看', '25~IMAX天线宝宝大电影'],
-        ['30~湘大南门分手，', '30~召唤师峡谷再会'],
-        ['25~有几个耿直boy', '25~打了四年撸还是', '35~"英勇黄铜"'],
+        ['30~湘大南门分手，', '30~召唤师峡谷再会', 2013],
+        ['25~有几个耿直boy', '25~打了几年撸还是', '35~"英勇黄铜"'],
         ['30~12点断网后，', '30~用夜间流量打LOL'],
-        ['20~四年前这时候','20~我们距离高考不到一个月，', '22~现在距离毕业也是'],
+        ['20~四年前这时候','20~我们距离高考不到一个月，', '22~现在距离毕业也是', 2013],
         ['40~还有四个月', '30~学校又要开始军训了'],
-        ['26~两年前欢送辅导员的时候', '35~大家笑的很伤心'],
+        ['26~两年前欢送辅导员的时候', '35~大家笑的很伤心', 2013],
         ['28~有几个boy看着', '40~gay里gay气'],
         ['28~有个可怜boy的','35~女票', '28~和','35~隔壁班妹子', '28~跑了'],
         ['25~班上女生从大一下学期开始变美，', '30~现在到达颜值巅峰'],
@@ -226,14 +226,14 @@ $(function(){
         ['30~学习委员不搞学习，', '30~宣传委员不搞宣传'],
         ['30~去KTV总喜欢点', '35~最炫民族风'],
         ['25~寝室有几个那种', '35~唱的烂又喜欢唱','25~的室友'],
-        ['26~有人重修没过准备读大五'],
+        ['26~有人重修没过准备读大五', 2013],
         ['30~尼姑庵'],
         ['30~和尚庙'],
         ['35~女神班'],
         ['35~女神班'],
         ['30~目标是星辰大海'],
-        ['26~拍毕业照的时候悄悄站在', '35~暗恋的女生背后'],
-        ['26~毕业照是', '30~我和TA','26~唯一的一张', '40~合照','26~……'],
+        ['26~拍毕业照的时候悄悄站在', '35~暗恋的女生背后', 2013],
+        ['26~毕业照是', '30~我和TA','26~唯一的一张', '40~合照','26~……', 2013],
     ]
 
     
@@ -270,21 +270,37 @@ $(function(){
         }
         for (var i = 0; i < str2Num; i++) {
             var randomTemp = getRandom(0,str2.length - 1)
+            if (str2[randomTemp][ str2[randomTemp].length - 1 ] == 2013 && parseInt(grade) == 2013) {
+                console.log('lalala');
+                str2[randomTemp].pop()
+                str.push(str2[randomTemp])
+                continue
+            }else if (str2[randomTemp][ str2[randomTemp].length - 1 ] == 2013 && parseInt(grade) != 2013) {
+                str2.splice(randomTemp,1)
+                i -= 1
+            }
             str.push(str2[randomTemp]);
             str2.splice(randomTemp,1)
         }
         for (var i = 0; i < str3Num; i++) {
             var randomTemp = getRandom(0,str3.length - 1)
+            if (str3[randomTemp][ str3[randomTemp].length - 1 ] == 2013 && parseInt(grade) == 2013) {
+                console.log(str3[randomTemp]);
+                str3[randomTemp].pop()
+                str.push(str3[randomTemp])
+                str3.splice(randomTemp,1)
+                continue
+            }else if (str3[randomTemp][ str3[randomTemp].length - 1 ] == 2013 && parseInt(grade) != 2013) {
+                str3.splice(randomTemp,1)
+                i -= 1
+                continue
+            }
             str.push(str3[randomTemp]);
             str3.splice(randomTemp,1)
         }
         str.push(['25~你的班级有毒'])
     }
     // if (personName == '') str.push(['20~ ']) 
-    
-
-
-    console.dir(str);
 
     var bottomStr = [
         ['将“最美毕业照”邮件发送至byj@sky31.com,'],
