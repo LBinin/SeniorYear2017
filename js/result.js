@@ -16,7 +16,7 @@ $(function(){
     var img_url
 
     var wordSpacing = 8 // 字间距
-    var currLinePaddingBottom = 25 // 行间距
+    var currLinePaddingBottom = 20 // 行间距
 
     // 获取参数
     var request = decodeURI(window.location.search.substr(1, window.location.search.length)).split('&');
@@ -35,6 +35,9 @@ $(function(){
     }
     if (personName.length > 4) {
         personName = personName.substr(0,4)
+    }
+    if (personName == '') {
+        currLinePaddingBottom = 26
     }
 
     canvas = $('#canvas')[0]
@@ -247,9 +250,7 @@ $(function(){
     }
 
     function pushToDisplay() {
-        console.log(str1Num);
         for (var i = 0; i < str1Num; i++) {
-            console.log(11213);
             var randomTemp = getRandom(0,str1.length - 1)
             // randomTemp = 12
             if (str1[randomTemp][0] == '<br/>') {
@@ -265,7 +266,7 @@ $(function(){
                 continue
             }
             str.push(str1[randomTemp]);
-            // str1.splice(randomTemp,1)
+            str1.splice(randomTemp,1)
         }
         for (var i = 0; i < str2Num; i++) {
             var randomTemp = getRandom(0,str2.length - 1)
@@ -277,7 +278,7 @@ $(function(){
             str.push(str3[randomTemp]);
             str3.splice(randomTemp,1)
         }
-        str.push(['30~你的班级有毒'])
+        str.push(['25~你的班级有毒'])
     }
     // if (personName == '') str.push(['20~ ']) 
     
@@ -314,20 +315,23 @@ $(function(){
         ctx.font = '50px MicrosoftYahei'
         ctx.textAlign = 'center'
         // 年级
-        ctx.fillText(grade, center.x, 150, imgWidth - 140)
+        ctx.fillText(grade, center.x, 130, imgWidth - 140)
         // 班级
-        ctx.fillText(className, center.x, 220, imgWidth - 140)
+        ctx.fillText(className, center.x, 200, imgWidth - 140)
 
 
         // 绘制有毒内容
-        var currLineY = 280 // 初始文字位置
+        var currLineY = 270 // 初始文字位置
         var textOffsetRight = 10 // 文字右偏移
-
-        var contentWidth = 554 // 总宽度
+        ctx.textBaseline="Bottom"
+        var contentWidth = 554 // 内容总宽度
+        var contentBottom = 720 // 内容最低高度
         for (var j = 0; j < str.length; j++) {
             // 测量宽度
             var currLineSumWidth = 0
+            // 测量高度
             var currLineMaxHeight = 0
+
             for (var i = 0; i < str[j].length; i++) {
                 // 测量
                 var temp = str[j][i].split('~')
@@ -339,21 +343,16 @@ $(function(){
                 // 解决宽度自适应问题
                 if (currLineSumWidth > contentWidth) {
                     for( var k = 0; k < str[j].length; k++ ) {
-                        console.log(str[j]);
                         var resize = str[j][k].split('~')
                         str[j][k] = (parseInt( resize[0] ) - 1) + '~' + resize[1]
-                        console.log(str[j]);
                     }
                     currLineSumWidth = 0
                     currLineMaxHeight = 0
                     i = -1
                 }
             }
-            console.log('第' + (j+1) + '句' + 'currLineSumWidth=' + currLineSumWidth + ' currLineMaxHeight=' + currLineMaxHeight)
-
+            console.log(currLineMaxHeight);
             var textLeft = (imgWidth - currLineSumWidth) / 2 + textOffsetRight
-            console.log('第' + (j+1) + '句' + 'textLeft = ' + textLeft);
-
 
             // 绘制文字
             ctx.textAlign='left';
@@ -361,6 +360,10 @@ $(function(){
                 // 绘制
                 var temp = str[j][i].split('~')
                 ctx.font = temp[0] + 'px MicrosoftYahei'
+                console.log('currLineY=' + currLineY);
+                if (currLineY > contentBottom) {
+                    break
+                }
                 ctx.fillText(temp[1], textLeft, currLineY, 300)
                 // 文字的X值
                 textLeft += ctx.measureText( temp[1] ).width > 300 ? 300 + wordSpacing : ctx.measureText( temp[1] ).width + wordSpacing
