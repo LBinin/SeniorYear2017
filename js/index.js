@@ -1,8 +1,10 @@
 $(function(){
+    
     // 设定高度
     var bodyHeight = $(window).height()
     var bodyWidth = $(window).width()
-    if (bodyHeight <= bodyWidth) {
+    if (isPc || isPad) {}
+    else if (bodyHeight <= bodyWidth) {
         bodyHeight = $(window).width()
         bodyWidth = $(window).height()
     }
