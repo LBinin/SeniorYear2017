@@ -230,7 +230,7 @@ $(function(){
         ['30~尼姑庵'],
         ['30~和尚庙'],
         ['35~女神班'],
-        ['35~女神班'],
+        ['35~男神班'],
         ['30~目标是星辰大海'],
         ['26~拍毕业照的时候悄悄站在', '35~暗恋的女生背后', 2013],
         ['26~毕业照是', '30~我和TA','26~唯一的一张', '40~合照','26~……', 2013],
@@ -271,13 +271,13 @@ $(function(){
         for (var i = 0; i < str2Num; i++) {
             var randomTemp = getRandom(0,str2.length - 1)
             if (str2[randomTemp][ str2[randomTemp].length - 1 ] == 2013 && parseInt(grade) == 2013) {
-                console.log('lalala');
                 str2[randomTemp].pop()
                 str.push(str2[randomTemp])
                 continue
             }else if (str2[randomTemp][ str2[randomTemp].length - 1 ] == 2013 && parseInt(grade) != 2013) {
                 str2.splice(randomTemp,1)
                 i -= 1
+                continue
             }
             str.push(str2[randomTemp]);
             str2.splice(randomTemp,1)
