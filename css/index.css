@@ -6,7 +6,6 @@
 html, body {
     width: 100%;
     position: relative;
-    overflow: hidden;
 }
 input {
     -webkit-appearance: none;
@@ -32,6 +31,7 @@ input:focus {
     width: 100%;
     background: url(../images/background.png);
     position: relative;
+    overflow: hidden;
 }
 .paper {
     position: absolute;
